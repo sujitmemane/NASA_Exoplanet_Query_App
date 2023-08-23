@@ -1,3 +1,4 @@
 import MainBox from "./MainBox";
+import SearchBox from "./SearchBox";
 
-export { MainBox }
+export { MainBox, SearchBox }
