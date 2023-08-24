@@ -11,7 +11,7 @@ function App() {
         const response = await fetch("src/data/data.csv");
         const csvData = await response.text();
         const jsonData = await csvtojson().fromString(csvData);
-        console.log(jsonData);
+
         setData(jsonData);
       } catch (error) {
         console.log("Their is Error in Fetching" + error);

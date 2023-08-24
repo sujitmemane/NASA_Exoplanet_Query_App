@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-const SearchBox = ({ data }) => {
-  // discoverymethod,disc_year,disc_facility
+const SearchBox = ({ data, onSearch }) => {
   const [hostName, setHostName] = useState("Host Name");
   const [discoveryMethod, setDiscoveryMethod] = useState("Discovery Method");
   const [discoveryYear, setDiscoveryYear] = useState("Discovery Year");
@@ -33,6 +32,18 @@ const SearchBox = ({ data }) => {
   };
 
   console.log(hostName, discoveryMethod, discoveryFacility, discoveryYear);
+
+  const searchQueryHandler = () => {
+    const queries = {
+      hostname: hostName === "Host Name" ? null : hostName,
+      discoverymethod:
+        discoveryMethod === "Discovery Method" ? null : discoveryMethod,
+      discoveryyear: discoveryYear === "Discovery Year" ? null : discoveryYear,
+      discoveryfacility:
+        discoveryFacility === "Discovery Facility" ? null : discoveryFacility,
+    };
+    onSearch(queries);
+  };
 
   return (
     <div>
@@ -93,7 +104,10 @@ const SearchBox = ({ data }) => {
             );
           })}
         </select>
-        <button className="px-8 py-1 bg-black text-white text-sm">
+        <button
+          className="px-8 py-1 bg-black text-white text-sm"
+          onClick={searchQueryHandler}
+        >
           Search
         </button>
         <button
