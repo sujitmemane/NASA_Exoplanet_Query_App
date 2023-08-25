@@ -12,7 +12,9 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await fetch("src/data/data.csv");
+
         const csvData = await response.text();
+        console.log("fetched data", csvData);
         const jsonData = await csvtojson().fromString(csvData);
 
         setData(jsonData);
