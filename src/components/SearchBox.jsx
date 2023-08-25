@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
-const SearchBox = ({ data, onSearch }) => {
+import { toast } from "react-toastify";
+const SearchBox = ({ data, onSearch, onClear }) => {
   const [hostName, setHostName] = useState("Host Name");
   const [discoveryMethod, setDiscoveryMethod] = useState("Discovery Method");
   const [discoveryYear, setDiscoveryYear] = useState("Discovery Year");
@@ -28,10 +28,9 @@ const SearchBox = ({ data, onSearch }) => {
     setHostName("Host Name");
     setDiscoveryYear("Discovery Year");
     setDiscoveryMethod("Discovery Method");
-    setDiscoveryFacility("Discover Facility");
+    setDiscoveryFacility("Discovery Facility");
+    onClear();
   };
-
-  console.log(hostName, discoveryMethod, discoveryFacility, discoveryYear);
 
   const searchQueryHandler = () => {
     const queries = {
@@ -43,6 +42,19 @@ const SearchBox = ({ data, onSearch }) => {
         discoveryFacility === "Discovery Facility" ? null : discoveryFacility,
     };
     onSearch(queries);
+
+    if (
+      queries.hostname === null &&
+      queries.discoveryfacility === null &&
+      queries.discoverymethod === null &&
+      queries.discoveryyear === null
+    ) {
+      toast("You Must Select Something!", {
+        position: "bottom-center",
+        autoClose: 500,
+        hideProgressBar: true,
+      });
+    }
   };
 
   return (

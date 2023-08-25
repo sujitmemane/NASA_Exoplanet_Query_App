@@ -1,6 +1,9 @@
 import "./App.css";
 import { MainBox } from "./components/index";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import * as csvtojson from "csvtojson";
 
 function App() {
@@ -22,6 +25,7 @@ function App() {
 
   const requiredData = data.map((element) => {
     return {
+      id: Math.random(),
       pl_name: element.pl_name,
       hostname: element.hostname,
       discoverymethod: element.discoverymethod,
@@ -37,6 +41,9 @@ function App() {
           NASA Exoplanet Query
           <MainBox data={requiredData} />
         </h1>
+        <ToastContainer
+          toastStyle={{ backgroundColor: "crimson", color: "white" }}
+        />
       </div>
     </>
   );
