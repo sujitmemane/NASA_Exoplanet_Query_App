@@ -3,7 +3,6 @@ import { MainBox } from "./components/index";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DataFile from "../public/data.csv";
 
 import * as csvtojson from "csvtojson";
 
@@ -12,7 +11,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(DataFile);
+        const response = await fetch("data.csv");
 
         const csvData = await response.text();
         console.log("fetched data", csvData);
