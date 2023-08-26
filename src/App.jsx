@@ -3,7 +3,7 @@ import { MainBox } from "./components/index";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import DataFile from "./data/data.csv";
+import DataFile from "../public/data.csv";
 
 import * as csvtojson from "csvtojson";
 
