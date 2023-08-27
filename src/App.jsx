@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("public/data.csv");
+        const response = await fetch("/data.csv");
 
         const csvData = await response.text();
         console.log("fetched data", csvData);
