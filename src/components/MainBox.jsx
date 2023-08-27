@@ -3,18 +3,13 @@ import React, { useState } from "react";
 import SearchBox from "./SearchBox";
 import NoData from "./NoData";
 import { DataGrid } from "@mui/x-data-grid";
+import NoResult from "../assets/noresult.gif";
 
 const columns = [
   {
     field: "pl_name",
     headerName: "Planet Name",
     flex: 1,
-    renderCell: (params) => (
-      <div
-        dangerouslySetInnerHTML={{ __html: params.value }}
-        style={{ whiteSpace: "normal" }}
-      />
-    ),
   },
   { field: "hostname", headerName: "Host Name", flex: 1 },
   { field: "discoverymethod", headerName: "Discovery Method", flex: 1 },
@@ -25,6 +20,7 @@ const columns = [
 const MainBox = ({ data }) => {
   console.log("main-data", data);
   const [tableData, setTableData] = useState([]);
+  const [noSearchResult, setNoSearchResult] = useState(false);
 
   const searchHandler = (queries) => {
     let filteredData = [...data];
@@ -51,6 +47,9 @@ const MainBox = ({ data }) => {
     }
 
     setTableData(filteredData);
+    if (filteredData.length === 0) {
+      setNoSearchResult(true);
+    }
     if (
       queries.hostname === null &&
       queries.discoveryfacility === null &&
@@ -63,19 +62,28 @@ const MainBox = ({ data }) => {
 
   const onClearHandler = () => {
     setTableData([]);
+    setNoSearchResult(false);
   };
 
   console.log("table array", tableData);
+  console.log(noSearchResult);
 
   return (
-    <div className="w-full bg-white p-4 mt-12 min-h-[700px] rounded-2xl ">
+    <div className="w-full bg-white p-4 mt-12 min-h-[700px] h-auto rounded-2xl ">
       <SearchBox
         data={data}
         onSearch={searchHandler}
         onClear={onClearHandler}
       />
+      {noSearchResult && (
+        <div className="p-8 flex flex-col items-center">
+          <img src={NoResult} alt="No Search Result Found" />
+        </div>
+      )}
       {tableData.length === 0 ? (
-        <NoData />
+        <>
+          <NoData />
+        </>
       ) : (
         <div className="mt-16 max-h-[550px] overflow-y-auto">
           <DataGrid
