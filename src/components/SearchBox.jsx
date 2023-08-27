@@ -59,11 +59,11 @@ const SearchBox = ({ data, onSearch, onClear }) => {
 
   return (
     <div>
-      <div className="flex text-black justify-between">
+      <div className="flex flex-col md:flex-row text-black justify-between space-y-2 md:space-y-0">
         <select
           name="Host Name"
           value={hostName}
-          className="w-64 text-sm flex border rounded px-2"
+          className="w-76 h-12 md:h-8 text-sm flex border rounded px-2"
           onChange={(e) => setHostName(e.target.value)}
         >
           {col2.map((element, index) => {
@@ -77,7 +77,7 @@ const SearchBox = ({ data, onSearch, onClear }) => {
         <select
           name="PlanetName"
           value={discoveryMethod}
-          className="w-64 text-sm flex border rounded px-2"
+          className="w-76 h-12 md:h-8 text-sm flex border rounded px-2"
           onChange={(e) => setDiscoveryMethod(e.target.value)}
         >
           {col3.map((element, index) => {
@@ -91,7 +91,7 @@ const SearchBox = ({ data, onSearch, onClear }) => {
         <select
           name="PlanetName"
           value={discoveryYear}
-          className="w-64 text-sm flex border rounded px-2"
+          className="w-76 h-12 md:h-8 text-sm flex border rounded px-2"
           onChange={(e) => setDiscoveryYear(e.target.value)}
         >
           {col4.map((element, index) => {
@@ -105,7 +105,7 @@ const SearchBox = ({ data, onSearch, onClear }) => {
         <select
           name="PlanetName"
           value={discoveryFacility}
-          className="w-76 text-sm flex border rounded px-2"
+          className="w-76 h-12 md:h-8 text-sm flex border rounded px-2"
           onChange={(e) => setDiscoveryFacility(e.target.value)}
         >
           {col5.map((element, index) => {
@@ -117,13 +117,13 @@ const SearchBox = ({ data, onSearch, onClear }) => {
           })}
         </select>
         <button
-          className="px-8 py-1 bg-black text-white text-sm"
+          className="px-8 py-3 md:py-1 bg-black text-white text-sm"
           onClick={searchQueryHandler}
         >
           Search
         </button>
         <button
-          className="px-8 py-1 bg-black text-white text-sm"
+          className="px-8 py-3 md:py-1 bg-black text-white text-sm"
           onClick={clearSearchHandler}
         >
           Clear

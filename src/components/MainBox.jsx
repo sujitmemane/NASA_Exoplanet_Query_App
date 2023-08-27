@@ -5,8 +5,18 @@ import NoData from "./NoData";
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
-  { field: "pl_name", headerName: "Planet Name", flex: 1 },
-  { field: "hostname", headerName: "Discovery Year", flex: 1 },
+  {
+    field: "pl_name",
+    headerName: "Planet Name",
+    flex: 1,
+    renderCell: (params) => (
+      <div
+        dangerouslySetInnerHTML={{ __html: params.value }}
+        style={{ whiteSpace: "normal" }}
+      />
+    ),
+  },
+  { field: "hostname", headerName: "Host Name", flex: 1 },
   { field: "discoverymethod", headerName: "Discovery Method", flex: 1 },
   { field: "disc_year", headerName: "Discovery Year", flex: 1 },
   { field: "disc_facility", headerName: "Discovery Facility", flex: 1 },
